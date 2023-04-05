@@ -1,6 +1,6 @@
 ﻿namespace Tarea_4
 {
-    partial class formPaginaPrincipal
+    partial class PaginaPrincipal
     {
         /// <summary>
         /// Required designer variable.

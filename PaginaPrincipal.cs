@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Tarea_4
 {
-    public partial class formPaginaPrincipal : Form
+    public partial class PaginaPrincipal : Form
     {
-        public formPaginaPrincipal()
+        public PaginaPrincipal()
         {
             InitializeComponent();
         }
@@ -92,13 +92,13 @@ namespace Tarea_4
 
             toggleCampos();
 
-            (new formPaginaPrincipal()).Show(); this.Hide(); //recargar paginas
+            (new PaginaPrincipal()).Show(); this.Hide(); //recargar paginas
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             //Eliminar Usuario
-            (new formPaginaPrincipal()).Show(); this.Hide();
+            (new PaginaPrincipal()).Show(); this.Hide();
 
         }
 
