@@ -29,6 +29,7 @@ namespace Tarea_4
             {
 
                 sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
                 sqlCommand.ExecuteNonQuery();
 
@@ -44,6 +45,7 @@ namespace Tarea_4
             if (sqlConnection.State != System.Data.ConnectionState.Open)
             {
                 sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -53,8 +55,6 @@ namespace Tarea_4
                     while (reader.Read())
                     {
                         query.Add(reader.GetValue(0));
-                        Console.WriteLine("{0}\t{1}", reader.GetInt32(0),
-                            reader.GetString(1));
                     }
                 }
                 reader.Close();
@@ -62,13 +62,12 @@ namespace Tarea_4
             return query;
         }
 
-        private void newPerson(string Usuario, string Nombre, string Apellido, string Telefono, string Correo, string Contraseña)
+        private void newPerson()
         {
             string cmd = $@"
-             INSERT into Persona VALUES
-             (\'{Usuario}\', \'{Nombre}\', \'{Apellido}\', \'{Telefono}\', \'{Correo}\', \'{Contraseña}\');
+             INSERT into Personas VALUES
+             ('{txtRegistroUsuario.Text}', '{txtRegistroNombre.Text}', '{txtRegistroApellido.Text}', '{txtTelefono.Text}', '{txtCorreo.Text}', '{txtContraseña.Text}');
             ";
-
             writeSQL(cmd);
         }
 
@@ -108,11 +107,6 @@ namespace Tarea_4
             return usuario;
         }
 
-        private void guardarUsuario(string usuario)
-        {
-            //introducir datos del nuevo usuario en la bd 
-        }
-
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (validarRegistro() == true)
@@ -125,17 +119,15 @@ namespace Tarea_4
                 string cmd = $@"
                 SELECT Nombre
                 FROM Personas
-                WHERE Nombre = \'{txtRegistroNombre}\' AND Contraseña = \'{txtContraseña.Text}\'
+                WHERE Nombre = '{txtRegistroNombre}' AND Contraseña = '{txtContraseña.Text}'
                 ";
                 var query = readSQL(cmd);
                 if (query.Count != 0 && query != null) { userExists = true; }
 
-                cmd = $@"
-                 Up
-                
-                ";
-
+                if (userExists == false){ newPerson();}
+                else if (userExists == true) { lblWarningRegistro.Text = "Este usuario ya existe"; lblWarningRegistro.Visible = true; }
             }
+
         }
 
         private void linkRegistrate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

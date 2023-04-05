@@ -13,11 +13,13 @@ namespace Tarea_4
         {
             string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
             SqlConnection sqlConnection = new SqlConnection(connectionString);
+
             if (sqlConnection.State != System.Data.ConnectionState.Open)
             {
-
-                sqlConnection.Open();
+                
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
+                sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
                 sqlCommand.ExecuteNonQuery();
 
                 sqlConnection.Close();
@@ -32,6 +34,7 @@ namespace Tarea_4
             if (sqlConnection.State != System.Data.ConnectionState.Open)
             {
                 sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -41,8 +44,6 @@ namespace Tarea_4
                     while (reader.Read())
                     {
                         query.Add(reader.GetValue(0));
-                        Console.WriteLine("{0}\t{1}", reader.GetInt32(0),
-                            reader.GetString(1));
                     }
                 }
                 reader.Close();
@@ -107,7 +108,7 @@ namespace Tarea_4
                 string cmd = $@"
                 SELECT Nombre 
                 FROM Personas
-                WHERE Nombre = \'{txtLoginUsuario.Text}\' AND Contraseña = \'{txtLoginContraseña.Text}\'
+                WHERE Nombre = '{txtLoginUsuario.Text}' AND Contraseña = '{txtLoginContraseña.Text}'
                 ";
 
                 var query = readSQL(cmd);
@@ -130,7 +131,9 @@ namespace Tarea_4
         {
             try
             {
-                writeSQL("create database Almacen");
+                try { writeSQL("create database Almacen"); } catch { }
+
+
                 string initTablas = @"
                 create table Personas
                 (
@@ -152,7 +155,7 @@ namespace Tarea_4
                 )";
                writeSQL(initTablas);
             }
-            catch { writeSQL("using Almacen"); }
+            catch { }
         }
 
         private void formLogin_Closing(object sender, FormClosingEventArgs e)
