@@ -124,7 +124,7 @@ namespace Tarea_4
                 var query = readSQL(cmd);
                 if (query.Count != 0 && query != null) { userExists = true; }
 
-                if (userExists == false){ newPerson();}
+                if (userExists == false) { newPerson(); (new MenuPrincipal()).Show(); this.Hide(); }
                 else if (userExists == true) { lblWarningRegistro.Text = "Este usuario ya existe"; lblWarningRegistro.Visible = true; }
             }
 

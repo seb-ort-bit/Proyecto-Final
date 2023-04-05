@@ -1,6 +1,6 @@
 ﻿namespace Tarea_4
 {
-    partial class PaginaPrincipal
+    partial class GestionUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -53,7 +53,7 @@
             lblNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblNumber.TextAlign = ContentAlignment.MiddleCenter;
             lblNumber.Location = new Point(178, 19);
-            lblNumber.Name = "lblNumer" + Convert.ToString(position);
+            lblNumber.Name = "lblNumero" + Convert.ToString(position);
             lblNumber.Size = new Size(100, 21);
             lblNumber.Text = telefono;
 
@@ -246,7 +246,7 @@
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
-            // formPaginaPrincipal
+            // GestionUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -267,9 +267,9 @@
             Controls.Add(lblTelefono);
             Controls.Add(lblNombre);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "formPaginaPrincipal";
+            Name = "GestionUsuarios";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "formPaginaPrincipal";
+            Text = "formGestionUsuarios";
             FormClosing += formPaginaPrincipalClosing;
             Load += formPaginaPrincipal_Load;
             ResumeLayout(false);

@@ -117,7 +117,7 @@ namespace Tarea_4
 
                 if (userExists) 
                 {
-                    (new PaginaPrincipal()).Show(); this.Hide();
+                    (new MenuPrincipal()).Show(); this.Hide();
                 }
                 else
                 {

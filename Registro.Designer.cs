@@ -76,7 +76,7 @@
             linkRegistrate.Location = new Point(192, 553);
             linkRegistrate.Name = "linkRegistrate";
             linkRegistrate.Size = new Size(61, 21);
-            linkRegistrate.TabIndex = 13;
+            linkRegistrate.TabIndex = 8;
             linkRegistrate.TabStop = true;
             linkRegistrate.Text = "Ingresa";
             linkRegistrate.LinkClicked += linkRegistrate_LinkClicked;
@@ -97,7 +97,7 @@
             btnRegistrar.Location = new Point(41, 516);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(210, 34);
-            btnRegistrar.TabIndex = 11;
+            btnRegistrar.TabIndex = 7;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = true;
             btnRegistrar.Click += btnRegistrar_Click;
@@ -118,7 +118,7 @@
             txtRegistroApellido.Location = new Point(40, 144);
             txtRegistroApellido.Name = "txtRegistroApellido";
             txtRegistroApellido.Size = new Size(210, 26);
-            txtRegistroApellido.TabIndex = 9;
+            txtRegistroApellido.TabIndex = 1;
             // 
             // txtRegistroNombre
             // 
@@ -126,7 +126,7 @@
             txtRegistroNombre.Location = new Point(40, 85);
             txtRegistroNombre.Name = "txtRegistroNombre";
             txtRegistroNombre.Size = new Size(210, 26);
-            txtRegistroNombre.TabIndex = 8;
+            txtRegistroNombre.TabIndex = 0;
             txtRegistroNombre.TextChanged += txtRegistroNombre_TextChanged;
             // 
             // label1
@@ -156,7 +156,7 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.PasswordChar = '*';
             txtContraseña.Size = new Size(210, 26);
-            txtContraseña.TabIndex = 17;
+            txtContraseña.TabIndex = 5;
             // 
             // txtRegistroUsuario
             // 
@@ -164,7 +164,7 @@
             txtRegistroUsuario.Location = new Point(40, 203);
             txtRegistroUsuario.Name = "txtRegistroUsuario";
             txtRegistroUsuario.Size = new Size(210, 26);
-            txtRegistroUsuario.TabIndex = 16;
+            txtRegistroUsuario.TabIndex = 2;
             // 
             // lblWarningRegistro
             // 
@@ -195,7 +195,7 @@
             txtCorreo.Location = new Point(40, 261);
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(210, 26);
-            txtCorreo.TabIndex = 21;
+            txtCorreo.TabIndex = 3;
             // 
             // lblTelefono
             // 
@@ -213,7 +213,7 @@
             txtTelefono.Location = new Point(40, 321);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(210, 26);
-            txtTelefono.TabIndex = 23;
+            txtTelefono.TabIndex = 4;
             // 
             // lblConfirmar
             // 
@@ -232,7 +232,7 @@
             txtConfirmar.Name = "txtConfirmar";
             txtConfirmar.PasswordChar = '*';
             txtConfirmar.Size = new Size(210, 26);
-            txtConfirmar.TabIndex = 25;
+            txtConfirmar.TabIndex = 6;
             // 
             // formRegister
             // 
