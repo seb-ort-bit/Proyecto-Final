@@ -93,7 +93,7 @@ namespace Tarea_4
 
         private void linkRegistrate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            (new formRegister()).Show(); this.Hide();
+            (new formRegistroUsuario()).Show(); this.Hide();
 
         }
 
@@ -129,6 +129,8 @@ namespace Tarea_4
 
         private void formLogin_Load(object sender, EventArgs e)
         {
+            
+
             try
             {
                 try { writeSQL("create database Almacen"); } catch { }
@@ -150,7 +152,7 @@ namespace Tarea_4
                 Nombre varchar(50),
                 Marca varchar(20),
                 Categoria varchar(20),
-                Precio int,
+                Precio DOUBLE(9, 2),
                 Cantidad_Disponible int
                 )";
                writeSQL(initTablas);

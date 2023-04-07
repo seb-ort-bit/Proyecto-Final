@@ -27,7 +27,6 @@ namespace Tarea_4
             public string Telefono = "";
             public string Correo = "";
             public string Contraseña = "";
-
         }
 
         private void writeSQL(string cmdText)
@@ -112,7 +111,7 @@ namespace Tarea_4
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            (new formLogin()).Show(); this.Hide();
+            (new MenuPrincipal()).Show(); this.Hide();
         }
 
         private void formPaginaPrincipal_Load(object sender, EventArgs e)

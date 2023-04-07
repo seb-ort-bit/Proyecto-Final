@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Tarea_4
 {
-    public partial class formRegister : Form
+    public partial class formRegistroUsuario : Form
     {
 
-        public formRegister()
+        public formRegistroUsuario()
         {
             InitializeComponent();
 

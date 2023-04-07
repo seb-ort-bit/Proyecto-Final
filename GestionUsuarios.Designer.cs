@@ -138,7 +138,7 @@
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(138, 35);
             btnCerrarSesion.TabIndex = 4;
-            btnCerrarSesion.Text = "Cerrar Sesión";
+            btnCerrarSesion.Text = "Regresar";
             btnCerrarSesion.UseVisualStyleBackColor = false;
             btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 

@@ -53,6 +53,7 @@
             btnGestionarProductos.TabIndex = 1;
             btnGestionarProductos.Text = "Gestionar Productos";
             btnGestionarProductos.UseVisualStyleBackColor = true;
+            btnGestionarProductos.Click += btnGestionarProductos_Click;
             // 
             // btnCerrarSesion
             // 

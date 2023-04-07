@@ -26,5 +26,10 @@ namespace Tarea_4
         {
             (new GestionUsuarios()).Show(); this.Hide();
         }
+
+        private void btnGestionarProductos_Click(object sender, EventArgs e)
+        {
+            (new GestionProductos()).Show(); this.Hide();
+        }
     }
 }

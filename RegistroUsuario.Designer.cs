@@ -1,6 +1,6 @@
 ﻿namespace Tarea_4
 {
-    partial class formRegister
+    partial class formRegistroUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -116,6 +116,7 @@
             // 
             txtRegistroApellido.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegistroApellido.Location = new Point(40, 144);
+            txtRegistroApellido.MaxLength = 15;
             txtRegistroApellido.Name = "txtRegistroApellido";
             txtRegistroApellido.Size = new Size(210, 26);
             txtRegistroApellido.TabIndex = 1;
@@ -124,6 +125,7 @@
             // 
             txtRegistroNombre.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegistroNombre.Location = new Point(40, 85);
+            txtRegistroNombre.MaxLength = 15;
             txtRegistroNombre.Name = "txtRegistroNombre";
             txtRegistroNombre.Size = new Size(210, 26);
             txtRegistroNombre.TabIndex = 0;
@@ -153,6 +155,7 @@
             // 
             txtContraseña.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtContraseña.Location = new Point(40, 384);
+            txtContraseña.MaxLength = 20;
             txtContraseña.Name = "txtContraseña";
             txtContraseña.PasswordChar = '*';
             txtContraseña.Size = new Size(210, 26);
@@ -162,6 +165,7 @@
             // 
             txtRegistroUsuario.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegistroUsuario.Location = new Point(40, 203);
+            txtRegistroUsuario.MaxLength = 15;
             txtRegistroUsuario.Name = "txtRegistroUsuario";
             txtRegistroUsuario.Size = new Size(210, 26);
             txtRegistroUsuario.TabIndex = 2;
@@ -193,6 +197,7 @@
             // 
             txtCorreo.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtCorreo.Location = new Point(40, 261);
+            txtCorreo.MaxLength = 20;
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(210, 26);
             txtCorreo.TabIndex = 3;
@@ -211,6 +216,7 @@
             // 
             txtTelefono.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtTelefono.Location = new Point(40, 321);
+            txtTelefono.MaxLength = 10;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(210, 26);
             txtTelefono.TabIndex = 4;
@@ -229,12 +235,13 @@
             // 
             txtConfirmar.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtConfirmar.Location = new Point(40, 447);
+            txtConfirmar.MaxLength = 20;
             txtConfirmar.Name = "txtConfirmar";
             txtConfirmar.PasswordChar = '*';
             txtConfirmar.Size = new Size(210, 26);
             txtConfirmar.TabIndex = 6;
             // 
-            // formRegister
+            // formRegistroUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -258,7 +265,7 @@
             Controls.Add(lblLogin);
             Controls.Add(txtRegistroApellido);
             Controls.Add(txtRegistroNombre);
-            Name = "formRegister";
+            Name = "formRegistroUsuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registrarse";
             FormClosing += formRegister_Closing;
