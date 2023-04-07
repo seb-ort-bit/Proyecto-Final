@@ -9,21 +9,46 @@ namespace Tarea_4
             InitializeComponent();
         }
 
-        private void ejecutarSQL(string cmdText)
+        private void writeSQL(string cmdText)
         {
+            string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+            if (sqlConnection.State != System.Data.ConnectionState.Open)
+            {
+                
+                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
+                sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
+                sqlCommand.ExecuteNonQuery();
+
+                sqlConnection.Close();
+            }
+        }
+
+        private List<object> readSQL(string cmdText)
+        {
+            List<object> query = new List<object>();
             string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             if (sqlConnection.State != System.Data.ConnectionState.Open)
             {
-
                 sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
-                sqlCommand.ExecuteNonQuery();
 
-                sqlConnection.Close();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
 
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        query.Add(reader.GetValue(0));
+                    }
+                }
+                reader.Close();
             }
-
+            return query;
         }
 
         private bool validarLogin()
@@ -77,15 +102,22 @@ namespace Tarea_4
             string[] usuarioNuevo = obtenerUsuario();
             bool userExists = false;
 
-            string[] divided;
-
             if (validarLogin())
             {
                 //Comparar datos introducidos con los disponibles en la base de datos, modificando userExists de acorde al resultado
+                string cmd = $@"
+                SELECT Nombre 
+                FROM Personas
+                WHERE Nombre = '{txtLoginUsuario.Text}' AND Contraseña = '{txtLoginContraseña.Text}'
+                ";
+
+                var query = readSQL(cmd);
+
+                if (query.Count != 0) { userExists = true; }
 
                 if (userExists) 
                 {
-                    (new formPaginaPrincipal()).Show(); this.Hide();
+                    (new MenuPrincipal()).Show(); this.Hide();
                 }
                 else
                 {
@@ -99,7 +131,9 @@ namespace Tarea_4
         {
             try
             {
-                ejecutarSQL("create database Almacen");
+                try { writeSQL("create database Almacen"); } catch { }
+
+
                 string initTablas = @"
                 create table Personas
                 (
@@ -119,9 +153,9 @@ namespace Tarea_4
                 Precio int,
                 Cantidad_Disponible int
                 )";
-               ejecutarSQL(initTablas);
+               writeSQL(initTablas);
             }
-            catch { ejecutarSQL("using Almacen"); }
+            catch { }
         }
 
         private void formLogin_Closing(object sender, FormClosingEventArgs e)
