@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Tarea_4
 {
-    public partial class formRegister : Form
+    public partial class formRegistroProducto : Form
     {
 
-        public formRegister()
+        public formRegistroProducto()
         {
             InitializeComponent();
 
@@ -62,11 +62,11 @@ namespace Tarea_4
             return query;
         }
 
-        private void newPerson()
+        private void newProduct()
         {
             string cmd = $@"
-             INSERT into Personas VALUES
-             ('{txtRegistroUsuario.Text}', '{txtRegistroNombre.Text}', '{txtRegistroApellido.Text}', '{txtTelefono.Text}', '{txtCorreo.Text}', '{txtContraseña.Text}');
+             INSERT into Productos VALUES
+             ('{txtNombre.Text}', '{txtMarca.Text}', '{txtCategoria.Text}', {Convert.ToDouble(txtPrecio.Text)}, {Convert.ToInt32(txtCantidad.Text)});
             ";
             writeSQL(cmd);
         }
@@ -78,61 +78,52 @@ namespace Tarea_4
             //Revisar todos los textbox en el Form actual y verificar si estan vacios o solo tienen espacios.
             foreach (var txtBox in this.Controls.OfType<TextBox>())
             {
+                bool isValidNumber = double.TryParse(txtPrecio.Text, out _) && int.TryParse(txtCantidad.Text, out _);
 
-                if (string.IsNullOrWhiteSpace(txtBox.Text) || txtBox.Text.Contains(" "))
+                if (string.IsNullOrWhiteSpace(txtBox.Text))
                 {
 
-                    camposFaltantes = camposFaltantes + "\n" + (txtBox.Name.Substring(3)).Replace("Registro", "");
+                    camposFaltantes = camposFaltantes + "\n" + txtBox.Name.Substring(3);
 
                 }
-                if (txtConfirmar.Text != txtContraseña.Text)
-                {
-                    lblWarningRegistro.Text = "Las contraseñas son diferentes";
-                    lblWarningRegistro.Visible = true;
-                    return false;
-                }
+                else if ((txtBox.Name == "txtCantidad" || txtBox.Name == "txtPrecio") && !isValidNumber)
+                { camposFaltantes = camposFaltantes + "\n" + txtBox.Name.Substring(3); }
+
             }
 
             if (!(camposFaltantes == ""))
             {
-                MessageBox.Show(camposFaltantes, "Los siguientes campos están vacíos o contienen espacios:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(camposFaltantes, "Los siguientes campos están vacíos o contienen datos inválidos:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
-        }
-
-        private string obtenerUsuario()
-        {
-            string usuario = txtRegistroNombre.Text + " " + txtRegistroApellido.Text + " " + txtRegistroUsuario.Text + " " + txtCorreo.Text + " " + txtTelefono.Text + " " + txtConfirmar.Text;
-            return usuario;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (validarRegistro() == true)
             {
-                //Comprobar si el usuario existe y guardar los datos en la dba y mostrar la pagina principal si no existe
+                //Comprobar si el producto existe y guardar los datos en la dba y mostrar el menu principal si no existe
 
-                string usuarioNuevo = obtenerUsuario();
-                bool userExists = false;
+                bool productExists = false;
 
                 string cmd = $@"
                 SELECT Nombre
-                FROM Personas
-                WHERE Nombre = '{txtRegistroNombre}' AND Contraseña = '{txtContraseña.Text}'
+                FROM Productos
+                WHERE Nombre = '{txtNombre.Text}' AND Marca = '{txtMarca.Text}'
                 ";
                 var query = readSQL(cmd);
-                if (query.Count != 0 && query != null) { userExists = true; }
+                if (query.Count != 0 && query != null) { productExists = true; }
 
-                if (userExists == false) { newPerson(); (new MenuPrincipal()).Show(); this.Hide(); }
-                else if (userExists == true) { lblWarningRegistro.Text = "Este usuario ya existe"; lblWarningRegistro.Visible = true; }
+                if (productExists == false) { newProduct(); (new MenuPrincipal()).Show(); this.Hide(); }
+                else if (productExists == true) { lblWarningRegistro.Text = "Este producto ya existe"; lblWarningRegistro.Visible = true; }
             }
 
         }
 
         private void linkRegistrate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            (new formLogin()).Show(); this.Hide();
+            (new GestionProductos()).Show(); this.Hide();
         }
 
         private void formRegister_Load(object sender, EventArgs e)
@@ -147,6 +138,11 @@ namespace Tarea_4
         }
 
         private void txtRegistroNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRegistroApellido_TextChanged(object sender, EventArgs e)
         {
 
         }

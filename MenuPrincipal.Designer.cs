@@ -53,6 +53,7 @@
             btnGestionarProductos.TabIndex = 1;
             btnGestionarProductos.Text = "Gestionar Productos";
             btnGestionarProductos.UseVisualStyleBackColor = true;
+            btnGestionarProductos.Click += btnGestionarProductos_Click;
             // 
             // btnCerrarSesion
             // 
@@ -79,7 +80,8 @@
             KeyPreview = true;
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MenuPrincipal";
+            Text = "Menú Principal";
+            FormClosing += MenuPrincipal_FormClosing;
             ResumeLayout(false);
         }
 
