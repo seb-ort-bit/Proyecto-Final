@@ -13,11 +13,9 @@ namespace Tarea_4
 {
     public partial class GestionProductos : Form
     {
-        public static GestionProductos instance;
         public GestionProductos()
         {
             InitializeComponent();
-            instance = this;
         }
 
         class Producto
@@ -29,21 +27,6 @@ namespace Tarea_4
             public double Precio = 0;
         }
 
-        private void writeSQL(string cmdText)
-        {
-            string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            if (sqlConnection.State != System.Data.ConnectionState.Open)
-            {
-
-                sqlConnection.Open();
-                sqlConnection.ChangeDatabase("Almacen");
-                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
-                sqlCommand.ExecuteNonQuery();
-
-                sqlConnection.Close();
-            }
-        }
 
         private List<Producto> readProductoSQL(string cmdText)
         {
@@ -66,8 +49,9 @@ namespace Tarea_4
                         entry.Nombre = reader.GetValue(0).ToString();
                         entry.Marca = reader.GetValue(1).ToString();
                         entry.Categoria = reader.GetValue(2).ToString();
-                        entry.Cantidad = Convert.ToInt32(reader.GetValue(3));
-                        entry.Precio = Convert.ToDouble(reader.GetValue(4));
+                        entry.Precio = Convert.ToDouble(reader.GetValue(3));
+                        entry.Cantidad = Convert.ToInt32(reader.GetValue(4));
+                        
 
                         query.Add(entry);
                     }
@@ -77,23 +61,7 @@ namespace Tarea_4
             return query;
         }
 
-        private bool validarEdicion()
-        {
-            //Revisar todos los textbox en el Form actual y verificar si estan vacios o solo tienen espacios.
-            foreach (var txtBox in this.Controls.OfType<TextBox>())
-            {
 
-                if (string.IsNullOrWhiteSpace(txtBox.Text) || txtBox.Text.Contains(" "))
-                {
-
-                    return false;
-
-                }
-            }
-
-            btnGuardarCambios.Enabled = true;
-            return true;
-        }
 
         private void comEditarUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {

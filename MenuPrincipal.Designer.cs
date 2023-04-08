@@ -80,7 +80,8 @@
             KeyPreview = true;
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MenuPrincipal";
+            Text = "Menú Principal";
+            FormClosing += MenuPrincipal_FormClosing;
             ResumeLayout(false);
         }
 

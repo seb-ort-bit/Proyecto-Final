@@ -40,6 +40,7 @@
             txtNombre = new TextBox();
             btnGuardar = new Button();
             btnEliminar = new Button();
+            btnRegresar = new Button();
             SuspendLayout();
             // 
             // lblPrecio
@@ -56,10 +57,11 @@
             // 
             txtPrecio.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPrecio.Location = new Point(137, 175);
-            txtPrecio.MaxLength = 5;
+            txtPrecio.MaxLength = 9;
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(210, 26);
             txtPrecio.TabIndex = 29;
+            txtPrecio.TextChanged += txtPrecio_TextChanged;
             // 
             // lblCantidad
             // 
@@ -75,10 +77,11 @@
             // 
             txtCantidad.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtCantidad.Location = new Point(251, 113);
-            txtCantidad.MaxLength = 12;
+            txtCantidad.MaxLength = 9;
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(210, 26);
             txtCantidad.TabIndex = 28;
+            txtCantidad.TextChanged += txtCantidad_TextChanged;
             // 
             // lblCategoria
             // 
@@ -98,6 +101,7 @@
             txtCategoria.Name = "txtCategoria";
             txtCategoria.Size = new Size(210, 26);
             txtCategoria.TabIndex = 27;
+            txtCategoria.TextChanged += txtCategoria_TextChanged;
             // 
             // lblMarca
             // 
@@ -127,6 +131,7 @@
             txtMarca.Name = "txtMarca";
             txtMarca.Size = new Size(210, 26);
             txtMarca.TabIndex = 26;
+            txtMarca.TextChanged += txtMarca_TextChanged;
             // 
             // txtNombre
             // 
@@ -136,9 +141,11 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(210, 26);
             txtNombre.TabIndex = 25;
+            txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // btnGuardar
             // 
+            btnGuardar.Enabled = false;
             btnGuardar.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnGuardar.Location = new Point(59, 219);
             btnGuardar.Name = "btnGuardar";
@@ -146,10 +153,12 @@
             btnGuardar.TabIndex = 35;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.IndianRed;
+            btnEliminar.Enabled = false;
             btnEliminar.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.Azure;
             btnEliminar.Location = new Point(278, 219);
@@ -158,12 +167,25 @@
             btnEliminar.TabIndex = 36;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnRegresar
+            // 
+            btnRegresar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRegresar.Location = new Point(173, 305);
+            btnRegresar.Name = "btnRegresar";
+            btnRegresar.Size = new Size(140, 37);
+            btnRegresar.TabIndex = 37;
+            btnRegresar.Text = "Regresar";
+            btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // EditarEliminarProducto
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(486, 319);
+            ClientSize = new Size(486, 354);
+            Controls.Add(btnRegresar);
             Controls.Add(btnEliminar);
             Controls.Add(btnGuardar);
             Controls.Add(lblPrecio);
@@ -180,6 +202,7 @@
             Name = "EditarEliminarProducto";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nombre del producto";
+            FormClosing += EditarEliminarProducto_FormClosing;
             Load += EditarEliminarProducto_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -199,5 +222,6 @@
         private TextBox txtNombre;
         private Button btnGuardar;
         private Button btnEliminar;
+        private Button btnRegresar;
     }
 }

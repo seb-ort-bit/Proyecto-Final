@@ -163,7 +163,7 @@
             // 
             txtCantidad.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtCantidad.Location = new Point(40, 261);
-            txtCantidad.MaxLength = 12;
+            txtCantidad.MaxLength = 9;
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(210, 26);
             txtCantidad.TabIndex = 3;
@@ -182,7 +182,7 @@
             // 
             txtPrecio.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPrecio.Location = new Point(40, 321);
-            txtPrecio.MaxLength = 5;
+            txtPrecio.MaxLength = 9;
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(210, 26);
             txtPrecio.TabIndex = 4;

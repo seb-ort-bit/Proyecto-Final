@@ -269,7 +269,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "GestionUsuarios";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "formGestionUsuarios";
+            Text = "Gestionar Usuarios";
             FormClosing += formPaginaPrincipalClosing;
             Load += formPaginaPrincipal_Load;
             ResumeLayout(false);

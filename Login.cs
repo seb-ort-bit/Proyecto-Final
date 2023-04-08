@@ -16,7 +16,7 @@ namespace Tarea_4
 
             if (sqlConnection.State != System.Data.ConnectionState.Open)
             {
-                
+
                 SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
                 sqlConnection.Open();
                 sqlConnection.ChangeDatabase("Almacen");
@@ -70,7 +70,7 @@ namespace Tarea_4
             {
                 return true;
             }
-            else 
+            else
             {
                 lblWarningLogin.Visible = true;
                 return false;
@@ -115,7 +115,7 @@ namespace Tarea_4
 
                 if (query.Count != 0) { userExists = true; }
 
-                if (userExists) 
+                if (userExists)
                 {
                     (new MenuPrincipal()).Show(); this.Hide();
                 }
@@ -129,7 +129,6 @@ namespace Tarea_4
 
         private void formLogin_Load(object sender, EventArgs e)
         {
-            
 
             try
             {
@@ -152,10 +151,10 @@ namespace Tarea_4
                 Nombre varchar(50),
                 Marca varchar(20),
                 Categoria varchar(20),
-                Precio DOUBLE(9, 2),
+                Precio DECIMAL(9, 2),
                 Cantidad_Disponible int
                 )";
-               writeSQL(initTablas);
+                writeSQL(initTablas);
             }
             catch { }
         }

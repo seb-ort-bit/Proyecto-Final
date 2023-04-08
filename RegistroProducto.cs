@@ -123,7 +123,7 @@ namespace Tarea_4
 
         private void linkRegistrate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            (new MenuPrincipal()).Show(); this.Hide();
+            (new GestionProductos()).Show(); this.Hide();
         }
 
         private void formRegister_Load(object sender, EventArgs e)

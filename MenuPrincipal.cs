@@ -31,5 +31,10 @@ namespace Tarea_4
         {
             (new GestionProductos()).Show(); this.Hide();
         }
+
+        private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
