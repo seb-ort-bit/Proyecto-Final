@@ -21,6 +21,48 @@ namespace Tarea_4
 
         }
 
+        class Persona
+        {
+            public string Usuario = "";
+            public string Nombre = "";
+            public string Apellido = "";
+            public string Telefono = "";
+            public string Correo = "";
+            public string Contraseña = "";
+        }
+
+        private List<Persona> readPersonaSQL(string cmdText)
+        {
+            List<Persona> query = new List<Persona>();
+            string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            if (sqlConnection.State != System.Data.ConnectionState.Open)
+            {
+                sqlConnection.Open();
+                sqlConnection.ChangeDatabase("Almacen");
+                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var entry = new Persona();
+                        entry.Usuario = reader.GetValue(0).ToString();
+                        entry.Nombre = reader.GetValue(1).ToString();
+                        entry.Apellido = reader.GetValue(2).ToString();
+                        entry.Telefono = reader.GetValue(3).ToString();
+                        entry.Correo = reader.GetValue(4).ToString();
+                        entry.Contraseña = reader.GetValue(5).ToString();
+                        query.Add(entry);
+                    }
+                }
+                reader.Close();
+            }
+            return query;
+        }
+
         private void writeSQL(string cmdText)
         {
             string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
@@ -37,30 +79,7 @@ namespace Tarea_4
             }
         }
 
-        private List<object> readSQL(string cmdText)
-        {
-            List<object> query = new List<object>();
-            string connectionString = "Data Source=localhost;Integrated Security=SSPI;Initial Catalog=;";
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            if (sqlConnection.State != System.Data.ConnectionState.Open)
-            {
-                sqlConnection.Open();
-                sqlConnection.ChangeDatabase("Almacen");
-                SqlCommand sqlCommand = new SqlCommand(cmdText, sqlConnection);
-
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        query.Add(reader.GetValue(0));
-                    }
-                }
-                reader.Close();
-            }
-            return query;
-        }
+        
 
         private void newPerson()
         {
@@ -113,16 +132,21 @@ namespace Tarea_4
             {
                 //Comprobar si el usuario existe y guardar los datos en la dba y mostrar la pagina principal si no existe
 
-                string usuarioNuevo = obtenerUsuario();
                 bool userExists = false;
 
                 string cmd = $@"
-                SELECT Nombre
+                SELECT *
                 FROM Personas
-                WHERE Nombre = '{txtRegistroNombre}' AND Contraseña = '{txtContraseña.Text}'
+                WHERE Nombre = '{txtRegistroNombre.Text}' AND Correo = '{txtCorreo.Text}';
                 ";
-                var query = readSQL(cmd);
-                if (query.Count != 0 && query != null) { userExists = true; }
+                var query = readPersonaSQL(cmd);
+
+                foreach (Persona persona in query)
+                {
+                    if (persona.Nombre == txtRegistroNombre.Text && persona.Correo == txtCorreo.Text)
+                    { userExists = true; }
+
+                }
 
                 if (userExists == false) { newPerson(); (new MenuPrincipal()).Show(); this.Hide(); }
                 else if (userExists == true) { lblWarningRegistro.Text = "Este usuario ya existe"; lblWarningRegistro.Visible = true; }

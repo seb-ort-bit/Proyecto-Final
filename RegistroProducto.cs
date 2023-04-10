@@ -115,7 +115,7 @@ namespace Tarea_4
                 var query = readSQL(cmd);
                 if (query.Count != 0 && query != null) { productExists = true; }
 
-                if (productExists == false) { newProduct(); (new MenuPrincipal()).Show(); this.Hide(); }
+                if (productExists == false) { newProduct(); (new GestionProductos()).Show(); this.Hide(); }
                 else if (productExists == true) { lblWarningRegistro.Text = "Este producto ya existe"; lblWarningRegistro.Visible = true; }
             }
 
