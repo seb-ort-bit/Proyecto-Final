@@ -197,7 +197,7 @@
             // 
             txtCorreo.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtCorreo.Location = new Point(40, 261);
-            txtCorreo.MaxLength = 25;
+            txtCorreo.MaxLength = 32;
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(210, 26);
             txtCorreo.TabIndex = 3;
